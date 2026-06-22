@@ -1,16 +1,19 @@
 class Solution {
-    public List<List<String>> groupAnagrams(String[] strs) {
-        Map<String, List<String>> map = new HashMap<>();
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string, vector<string>> mp;
 
-        for (String s : strs) {
-            char[] arr = s.toCharArray();
-            Arrays.sort(arr);
-
-            String key = new String(arr);
-
-            map.computeIfAbsent(key, k -> new ArrayList<>()).add(s);
+        for (string s : strs) {
+            string key = s;
+            sort(key.begin(), key.end());
+            mp[key].push_back(s);
         }
 
-        return new ArrayList<>(map.values());
+        vector<vector<string>> ans;
+        for (auto &it : mp) {
+            ans.push_back(it.second);
+        }
+
+        return ans;
     }
-}
+};
